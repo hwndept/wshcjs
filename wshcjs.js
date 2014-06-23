@@ -43,19 +43,19 @@ console = (function () {
         this._logLevel = 1;
     }
 
-    Console.prototype._log  = function (type, args) {
+    Console.prototype._log = function (type, args) {
         var i;
         if (type < this._logLevel) {
             return;
         }
 
-	    for (i = 0; i < args.length; i += 1) {
-		    if ("object" === typeof args[i]) {
-			    this._log(type, args[i]);
-		    } else {
-			    WScript.Stdout.WriteLine(String(args[i]));
-		    }
-	    }
+        for (i = 0; i < args.length; i += 1) {
+            if ("object" === typeof args[i]) {
+                this._log(type, args[i]);
+            } else {
+                WScript.Stdout.WriteLine(String(args[i]));
+            }
+        }
     };
 
     Console.prototype.log = function () {
@@ -79,10 +79,10 @@ console = (function () {
     };
 
     Console.TYPE_TRACE = 1;
-    Console.TYPE_INFO  = 2;
-    Console.TYPE_WARN  = 3;
+    Console.TYPE_INFO = 2;
+    Console.TYPE_WARN = 3;
     Console.TYPE_ERROR = 4;
-    Console.TYPE_LOG   = 5;
+    Console.TYPE_LOG = 5;
 
     return new Console(1);
 }());
@@ -90,19 +90,19 @@ console = (function () {
 require = (function () {
     'use strict';
 
-    var _shell    = new ActiveXObject("WScript.Shell"),
-        _fso      = new ActiveXObject("Scripting.FileSystemObject"),
-        _dirname  = _shell.CurrentDirectory,
+    var _shell = new ActiveXObject("WScript.Shell"),
+        _fso = new ActiveXObject("Scripting.FileSystemObject"),
+        _dirname = _shell.CurrentDirectory,
         _require;
 
     function createNullInclude(modulePath) {
         return function (filename, namespace) {
             console.log(
-                "You have called include function from required module.\n" +
-                "This feature is not available because require with include\n" +
-                "can not work together.\n" +
-                "Module: " + modulePath + "\n" +
-                "\t\ninclude(" + filename + ", " + namespace + ")\n"
+                    "You have called include function from required module.\n" +
+                    "This feature is not available because require with include\n" +
+                    "can not work together.\n" +
+                    "Module: " + modulePath + "\n" +
+                    "\t\ninclude(" + filename + ", " + namespace + ")\n"
             );
         };
     }
@@ -121,7 +121,7 @@ require = (function () {
     }
 
     function ModuleScope() {
-        this._varNames  = [];
+        this._varNames = [];
         this._varValues = [];
     }
 
@@ -141,7 +141,7 @@ require = (function () {
     };
 
     function Require(dirname) {
-        this._dirname  = dirname;
+        this._dirname = dirname;
     }
 
     Require.prototype.require = function (moduleName) {
@@ -173,7 +173,7 @@ require = (function () {
 
         moduleRequire = new Require(_fso.GetParentFolderName(modulePath));
 
-        __dirname  = _fso.GetParentFolderName(modulePath);
+        __dirname = _fso.GetParentFolderName(modulePath);
         __filename = modulePath;
 
         this.cache[modulePath] = module;
@@ -181,7 +181,7 @@ require = (function () {
         moduleScope = new ModuleScope();
 
         moduleScope
-            .add("global",  global)
+            .add("global", global)
             .add("console", console)
             .add("require", bind(moduleRequire.require, moduleRequire))
             .add("module", module)
@@ -192,7 +192,7 @@ require = (function () {
 
         moduleInitializer = Function(
             moduleScope.getVarNames().toString(),
-            "{" + moduleContent + "}"
+                "{" + moduleContent + "}"
         );
 
         try {
