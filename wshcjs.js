@@ -7,9 +7,9 @@ global = (function () {
 
     return {
         NaN:                NaN,
-        "Infinity":           Infinity,
-        "undefined":          undefined,
-        "eval":               eval,
+        'Infinity':           Infinity,
+        'undefined':          undefined,
+        'eval':               eval,
         parseInt:           parseInt,
         parseFloat:         parseFloat,
         isNaN:              isNaN,
@@ -50,7 +50,7 @@ console = (function () {
         }
 
         for (i = 0; i < args.length; i += 1) {
-            if ("object" === typeof args[i]) {
+            if ('object' === typeof args[i]) {
                 this._log(type, args[i]);
             } else {
                 WScript.Stdout.WriteLine(String(args[i]));
@@ -90,14 +90,14 @@ console = (function () {
 require = (function () {
     'use strict';
 
-    var _shell = new ActiveXObject("WScript.Shell"),
-        _fso = new ActiveXObject("Scripting.FileSystemObject"),
+    var _shell = new ActiveXObject('WScript.Shell'),
+        _fso = new ActiveXObject('Scripting.FileSystemObject'),
         _dirname = _shell.CurrentDirectory,
         _require;
 
     function read(filePath) {
         var fd = _fso.OpenTextFile(filePath, 1),
-            content = fd.AtEndOfStream ? "" : fd.ReadAll();
+            content = fd.AtEndOfStream ? '' : fd.ReadAll();
 
         return content;
     }
@@ -142,12 +142,12 @@ require = (function () {
             __dirname,
             __filename;
 
-        console.trace("$> requiring " + modulePath);
+        console.trace('$> requiring ' + modulePath);
 
         module = this.cache[modulePath];
 
         if (module !== undefined) {
-            console.trace("$> module cache found");
+            console.trace('$> module cache found');
 
             return module.exports;
         }
@@ -169,17 +169,17 @@ require = (function () {
         moduleScope = new ModuleScope();
 
         moduleScope
-            .add("global", global)
-            .add("console", console)
-            .add("require", bind(moduleRequire.require, moduleRequire))
-            .add("module", module)
-            .add("exports", module.exports)
-            .add("__dirname", __dirname)
-            .add("__filename", __filename);
+            .add('global', global)
+            .add('console', console)
+            .add('require', bind(moduleRequire.require, moduleRequire))
+            .add('module', module)
+            .add('exports', module.exports)
+            .add('__dirname', __dirname)
+            .add('__filename', __filename);
 
         moduleInitializer = Function(
             moduleScope.getVarNames().toString(),
-                "{" + moduleContent + "}"
+                '{' + moduleContent + '}'
         );
 
         try {
