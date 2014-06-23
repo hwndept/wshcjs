@@ -1,0 +1,23 @@
+{
+	"nonew":     true,
+	"plusplus":  true,
+	"curly":     true,
+	"latedef":   true,
+	"noarg":     true,
+	"trailing":  true,
+	"white":     true,
+	"forin":     true,
+	"noempty":   true,
+	"eqeqeq":    true,
+	"strict":    true,
+	"undef":     true,
+	"bitwise":   true,
+	"newcap":    true,
+	"immed":     true,
+	"onevar":    true,
+	"es3":       true,
+	"wsh":       true,
+	"camelcase": true,
+	"nonbsp":    true,
+	"maxlen":    80
+}
