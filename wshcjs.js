@@ -95,18 +95,6 @@ require = (function () {
         _dirname = _shell.CurrentDirectory,
         _require;
 
-    function createNullInclude(modulePath) {
-        return function (filename, namespace) {
-            console.log(
-                    "You have called include function from required module.\n" +
-                    "This feature is not available because require with include\n" +
-                    "can not work together.\n" +
-                    "Module: " + modulePath + "\n" +
-                    "\t\ninclude(" + filename + ", " + namespace + ")\n"
-            );
-        };
-    }
-
     function read(filePath) {
         var fd = _fso.OpenTextFile(filePath, 1),
             content = fd.AtEndOfStream ? "" : fd.ReadAll();
@@ -187,8 +175,7 @@ require = (function () {
             .add("module", module)
             .add("exports", module.exports)
             .add("__dirname", __dirname)
-            .add("__filename", __filename)
-            .add("include", createNullInclude(__filename));
+            .add("__filename", __filename);
 
         moduleInitializer = Function(
             moduleScope.getVarNames().toString(),
