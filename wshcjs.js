@@ -7,9 +7,9 @@ global = (function () {
 
     return {
         NaN:                NaN,
-        'Infinity':           Infinity,
-        'undefined':          undefined,
-        'eval':               eval,
+        'Infinity':         Infinity,
+        'undefined':        undefined,
+        'eval':             eval,
         parseInt:           parseInt,
         parseFloat:         parseFloat,
         isNaN:              isNaN,
